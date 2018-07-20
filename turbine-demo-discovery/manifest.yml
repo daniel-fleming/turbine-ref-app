@@ -1,0 +1,5 @@
+applications:
+- name: turbine-demo-discovery
+  memory: 1G
+  instances: 1
+  path: target/turbine-demo-discovery-0.0.1-SNAPSHOT.jar

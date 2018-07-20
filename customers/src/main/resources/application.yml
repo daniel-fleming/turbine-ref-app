@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: customers
+    
+turbine:
+  aggregator:
+    clusterConfig: CUSTOMERS
+  appConfig: customers  
+  
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: https://turbine-demo-discovery.cfapps.io/eureka/
+  instance:
+    hostname: ${vcap.application.uris[0]}
+    metadata-map:
+      management:
+        port: 80
+    non-secure-port: 80
+    secure-port: 443
+    status-page-url: http://${vcap.application.uris[0]}/actuator/info
+    health-check-url: http://${vcap.application.uris[0]}/actuator/health
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
