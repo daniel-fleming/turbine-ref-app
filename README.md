@@ -7,13 +7,24 @@ The Eureka Server is a standalone Eureka server with one deployed instance.
 
 # Running the reference implementation
 
-1. Build and deploy the Eureka server instance to your PCF space 
+1. Build and deploy the Eureka server instance to your PCF space   
     ```
     cd turbine-demo-discovery
     mvn clean package && cf push
     ```
 
 2. Build and deploy the customers app instances to your PCF space
+    
+    Make sure you modify the eureka.serviceUrl.defaultZone property in the application.yml file before proceeding
+    ```
+    eureka:
+        client:
+            registerWithEureka: true
+            fetchRegistry: true
+        serviceUrl:
+        defaultZone: https://<YOUR-EUREKA-URL>
+    ```
+
     ```
     cd customers
     mvn clean package && cf push
